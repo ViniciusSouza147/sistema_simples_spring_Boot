@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt=br" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="utf-8">
+	<title>CLientes</title>
+</head>
+<body>
+
+	<h1 layout:fragment="header">Cadastri de CLientes</h1>
+	<div layout:fragment="content" class="imput-form">
+	
+		<div class="well">
+			<form id="clinteForm" th:action="@{/clinte/(form)}"
+				th:object="${clinte}" class="form-horizontal" action="#"
+				method="post">
+				<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
+					<p th:each="error: ${#fields.errors('*')}" th:text="${error}">Error
+						de validação</p>
+				</div>
+				<imput type="hidden" th:field="*{id}"
+					th:class="${fields.hasErrros('id')} ? 'fields-error'" />
+				<div class="form-group">
+					<label class="control-lebal col-sm-2" for="name">Nome</label>
+					<imput class="col-sm-10" type="text" th:field="*{name}"
+						th:class="${#fields.hasErrors('name')} ? 'field-error'" />
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="text">Endereço</label>
+					<textarea class="col-sm-10" th:field="*{address}"
+						th:class="${#fiels.hasErrors('address')} ? 'field-error'"></textarea>
+				</div>
+				<div class="col-sm-offset-2 col-sm-10">
+					<imput type="submit" value="Gravar" />
+				</div>
+				<br /> <a th:href="@/cliente/" href="clientes.html">Voltar</a>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
